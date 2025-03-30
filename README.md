@@ -1,0 +1,1 @@
+Proxym is a flexible proxy manager for Go applications. Allows you to easily manage the rotation and selection of proxy servers using a modular system of strategies. Integrates with the standard http.Client.

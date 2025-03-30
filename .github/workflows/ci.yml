@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - "*"
+    paths:
+      - ".github/workflows/ci.yml"
+      - "go.mod"
+      - "go.sum"
+      - ".golangci.yml"
+      - "scripts/lint.sh"
+      - "**.go"
+  pull_request:
+    branches:
+      - "*"
+    paths:
+      - ".github/workflows/ci.yml"
+      - "go.mod"
+      - "go.sum"
+      - ".golangci.yml"
+      - "scripts/lint.sh"
+      - "**.go"
+
+env:
+  GOVERSION: "1.23.0"
+  GOLANGCI_LINT_VERSION: "1.64.8"
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GOVERSION }}
+
+      - name: Install golangci-lint
+        run: go install github.com/golangci/golangci-lint/cmd/golangci-lint@${{ env.GOLANGCI_LINT_VERSION }}
+
+      - name: Run linter
+        run: sh scripts/lint.sh
+
+  test:
+    name: Test (Go ${{ matrix.goversion }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        goversion: ["1.21", "1.22", "1.23", "1.24"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Go ${{ matrix.goversion }}
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.goversion }}
+
+      - name: Install make
+        run: sudo apt-get update && sudo apt-get install -y make
+
+      - name: Run tests
+        run: make test
