@@ -2,7 +2,7 @@
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/nezbut/proxym.svg)](https://pkg.go.dev/github.com/nezbut/proxym)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![CI Status](https://github.com/nezbut/proxym/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/proxym/actions)
+[![CI Status](https://github.com/nezbut/proxym/actions/workflows/ci.yml/badge.svg)](https://github.com/nezbut/proxym/actions)
 
 **Proxym** is a flexible proxy manager for Go applications. It allows you to easily manage the rotation and selection of
 proxy servers
