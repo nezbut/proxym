@@ -15,7 +15,7 @@ through a system of modular strategies. Integrates transparently with the standa
 ✔️ Modular architecture for custom strategies  
 ✔️ Proxy chaining support  
 
-## Установка
+## Install
 
 ```bash
 go get github.com/nezbut/proxym
